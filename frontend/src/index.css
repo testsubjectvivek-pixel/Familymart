@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ─────────────────────────────────────────────────────────────────── */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+input, textarea, select {
+  font-family: inherit;
+}
+
+/* ─── Efficiency-Focused Utility Classes ────────────────────────────────────── */
+@layer components {
+  .efficiency-grid {
+    @apply grid grid-cols-1 gap-4;
+  }
+
+  .efficiency-card {
+    @apply bg-white border border-primary-200 rounded-lg shadow-sm transition-shadow duration-200 hover:shadow-md;
+  }
+
+  .efficiency-button {
+    @apply bg-accent-500 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 hover:bg-accent-600 focus:ring-2 focus:ring-blue-100 focus:outline-none;
+  }
+
+  .efficiency-input {
+    @apply w-full px-3 py-2 border border-primary-300 rounded-lg focus:ring-2 focus:ring-blue-100 focus:border-blue-300 outline-none transition-all duration-200;
+  }
+}
+
+/* ─── Custom Accent Colors ────────────────────────────────────────────────── */
+@layer utilities {
+  .bg-accent {
+    background-color: #3b82f6;
+  }
+  
+  .bg-accent-50 {
+    background-color: #eff6ff;
+  }
+  
+  .bg-accent-100 {
+    background-color: #dbeafe;
+  }
+  
+  .bg-accent-200 {
+    background-color: #bfdbfe;
+  }
+  
+  .bg-accent-300 {
+    background-color: #93c5fd;
+  }
+  
+  .bg-accent-400 {
+    background-color: #60a5fa;
+  }
+  
+  .bg-accent-500 {
+    background-color: #3b82f6;
+  }
+  
+  .bg-accent-600 {
+    background-color: #2563eb;
+  }
+
+  .text-accent {
+    color: #3b82f6;
+  }
+  
+  .border-accent {
+    border-color: #3b82f6;
+  }
+}
+
+/* ─── Custom scrollbar ──────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ─── Animations ────────────────────────────────────────────────────────────── */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-8px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceOnce {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.25); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+/* ─── Animation utility classes ─────────────────────────────────────────────── */
+.animate-slide-down {
+  animation: slideDown 0.2s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-bounce-once {
+  animation: bounceOnce 0.4s ease-out;
+}
+
+/* Shimmer skeleton effect */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* ─── Loading spinner ───────────────────────────────────────────────────────── */
+.spinner {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #3b82f6;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+/* ─── Toast notifications ───────────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #1f2937;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  animation: slideIn 0.3s ease-out;
+}
+
+/* ─── Product card ──────────────────────────────────────────────────────────── */
+.product-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+/* ─── Form inputs ───────────────────────────────────────────────────────────── */
+.form-input {
+  @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-shadow;
+}
+
+.form-input:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+/* ─── Buttons ───────────────────────────────────────────────────────────────── */
+.btn-primary {
+  @apply bg-primary-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-primary-700 transition-colors;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 text-gray-700 px-6 py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors;
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-red-700 transition-colors;
+}
+
+/* ─── Admin table ───────────────────────────────────────────────────────────── */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-table th {
+  background: #f9fafb;
+  font-weight: 600;
+}
+
+.admin-table tr:hover {
+  background: #f9fafb;
+}
+
+/* ─── Page transitions ──────────────────────────────────────────────────────── */
+.page-enter {
+  animation: fadeIn 0.25s ease-out forwards;
+}
